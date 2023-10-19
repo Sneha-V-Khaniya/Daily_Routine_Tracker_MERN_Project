@@ -1,24 +1,32 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import SignUp from './login_signup/SignUp';
+import Login from './login_signup/Login';
+import { UserProvider } from './Context/UserContext';
+import Home from './index/Home';
+import Graph0 from './Table/Graph0';
+import Graph2 from './Table/Graph2';
+import Graph1 from './Table/Graph1';
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <UserProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<Login />}></Route>
+          <Route path="/signup" element={<SignUp />}></Route>
+          <Route path="/home" element={<Home />} ></Route>
+          <Route path="/graph0/:habitName/:habitId" element={<Graph0 />} ></Route>
+          <Route path="/graph1/:habitName/:habitId" element={<Graph1 />}></Route>
+          <Route path="/graph2/:habitName/:habitId" element={<Graph2 />}></Route>
+          
+        </Routes>
+      </BrowserRouter>
+      </UserProvider>
+    </>
   );
 }
 
